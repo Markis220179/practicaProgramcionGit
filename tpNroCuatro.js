@@ -121,11 +121,8 @@ console.log("4_", coloresAleatoriosRgb);
 
 /*5. Escriba una función convertHexaToRgb que convierta el color hexa a rgb y devuelva
 un color rgb.*/
-
 /*function convertHexaToRgb(hexa){
-let r;
-let g;
-let b
+  var hex = decimal.toString(16);
 
   return  'rgb(' + r + ', ' + g + ', ' + b + ')'
 } 
@@ -136,14 +133,15 @@ console.log("5_", colorRgb);*/
 /*6. Escriba una función convertRgbToHexa que convierta rgb a color hexa y devuelva
 un color hexa.*/
 
-/*function convertRgbToHexa(rgb){
+function convertRgbToHexa(rgb){
 let color = '#';
-
+let hex = rgb.toString(16);
+color += hex;
   return  color;
 }
 
-let colorHexa = convertRgbToHexa();
-console.log("6_", colorHexa);*/
+let colorHexa = convertRgbToHexa(255);
+console.log("6_", colorHexa);
 /*7. Escriba una función generateColors que pueda generar cualquier número de colores
 hexa o rgb.
 console.log(generateColors('hexa', 3)) // ['#a3e12f', '#03ed55',
