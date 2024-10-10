@@ -13,7 +13,6 @@ function solveLinEquation(a, b, c, x){
 let yResolution = solveLinEquation(a, b, c, x);
 console.log("1_La ecuacion lineal de dichos valores es:",yResolution);
 
-
 /*2. La ecuación cuadrática se calcula de la siguiente manera: ax2 + bx + c = 0. Escriba una
 función que calcule el valor o los valores de una ecuación cuadrática, solveQuadEquation.*/
 /*consola.log(solveQuadratic()) // {0}
@@ -70,7 +69,6 @@ console.log( "4_", day + "/" + month + "/" + year + " " + hour + ":" + minutes +
 }
 showDateTime();
 
-
 /*5. Declare un nombre de función swapValues. Esta función intercambia el valor de x a y.*/
 /*swapValues(3, 4) // x => 4, y =>3
 swapValues(4, 5) // x = 5, y = 4*/
@@ -90,6 +88,7 @@ consola.log(reverseArray([1, 2, 3, 4, 5]))
 //[5, 4, 3, 2, 1]
 consola.log(reverseArray(['A', 'B', 'C']))
 //['C', 'B', 'A']*/
+
 function reverseArray(array) {
     let reversedArray = new Array(array.length);
     
@@ -104,7 +103,6 @@ let arrayInvertido = reverseArray(arrayOriginal);
 
 console.log("6_El array original es:", arrayOriginal)
 console.log("y el array invertido seria: ",arrayInvertido); 
-
 
 /*7. Declare un nombre de función capitalizeArray. Toma array como parámetro y devuelve el -
 capitalizedarray.*/
@@ -164,6 +162,7 @@ let nuevoItem = 60;
 nuevaMatriz = addItem(nuevoItem, nuevaMatriz);
 
 console.log("8_La matriz con el elemento agregado quedaria asi:", nuevaMatriz)
+
 /*9. Declare un nombre de función removeItem. Toma un parámetro de índice y devuelve una
 matriz después de eliminar un elemento*/
 
@@ -205,7 +204,7 @@ console.log("10_La suma del array hasta el parametro pasado es:", sumaDeNum);
 los números impares en ese rango.*/
 
 function sumOfOdds(parametroNum, array){
-   
+     
     let sumaArrayPorPImp = 0;
     for(i = 0; i < parametroNum; i++){
        
@@ -218,9 +217,9 @@ function sumOfOdds(parametroNum, array){
 
 let sumaNumImpPP = sumOfOdds(3, [1, 2, 3, 4, 5, 6]);
 console.log("11_La suma de los impares del array hasta el parametro es:", sumaNumImpPP);
+
 /*12. Declare un nombre de función sumOfEven. Toma un parámetro numérico y suma todos los
 números pares en ese rango.*/
-
 
 function sumOfEven(parametroNum, array){
    
@@ -236,6 +235,7 @@ function sumOfEven(parametroNum, array){
 
 let sumaNumParesPP = sumOfEven(4, [1, 2, 3, 4, 5, 6]);
 console.log("12_La suma de los impares del array hasta el parametroes:", sumaNumParesPP);
+
 /*13. Declare un nombre de función evensAndOdds . Toma un entero positivo como parámetro y
 cuenta el número de pares e impares en el número.
  evensAndOdds(100);
@@ -321,6 +321,7 @@ const valoresHexa = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B',
     }
     
     console.log("16_La MacAddress aleatoria es:", randomUserMacAddress());
+
 /*17. Declare un nombre de función randomHexaNumberGenerator. Cuando se llama a esta
 función, genera un número hexadecimal aleatorio. La función devuelve el número
 hexadecimal.
@@ -344,6 +345,7 @@ function randomHexaNumberGenerator(){
 
 }
 console.log("17_El numero hexadecimal aleatorio es:", randomHexaNumberGenerator());
+
 /*18. Declare un nombre de función userIdGenerator. Cuando se llama a esta función, genera
 una identificación de siete caracteres. La función devuelve el id.
 consola.log(userIdGenerator());

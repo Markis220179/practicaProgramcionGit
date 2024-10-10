@@ -155,25 +155,29 @@ console.log(generateColors('rgb', 1)) // 'rgb(33,79, 176)'*/
 
 function generateColors(colorType, cantOfColors){
 
-  let arrayOfColors = [];
+  let arrayOfColors;
   
     if(colorType === 'rgb'){
-         arrayOfColors.push(arrayOfRgbColors(cantOfColors));
+         arrayOfColors = arrayOfRgbColors(cantOfColors);
     }else if(colorType === 'hexa'){
-       arrayOfColors.push(arrayOfHexaColors(cantOfColors))  
+       arrayOfColors = arrayOfHexaColors(cantOfColors);  
    }
   
   return arrayOfColors;
 }
 
-let colores = generateColors('rgb', 4);
-console.log("7_", colores);
+let colores1 = generateColors('rgb', 3);
+console.log("7_", colores1);
+
+let colores2 = generateColors('hexa', 2);
+console.log("7 Bis_", colores2);
 /*8. Llame a su función shuffleArray, toma una arreglo como parámetro y devuelve una
 arreglo mezclada*/
 
 function shuffleArray(array){
   
  let  arrayMixed = [];
+ let num = Math.floor(Math.random() * 10);
 
  return arrayMixed;
 }
@@ -190,11 +194,10 @@ function factorial(num) {
       numFact *= i; 
   }
 
-  console.log("El factorial de", num + "! es:", numFact);
+  console.log("9_El factorial de", num + "! es:", numFact);
 }
 
 factorial(4);
-
 
 /*10. Llame a su función isEmpty, toma un parámetro y verifica si está vacío o no */
 
@@ -245,7 +248,7 @@ function isEmpty(value) {
 suma.*/
 
 function suma(...params) {
-  console.log(params);
+
   let suma = 0;
   for (let i = 0; i < params.length; i++){
     suma += params[i];
@@ -253,26 +256,49 @@ function suma(...params) {
   console.log("11_La suma de los parametros es:", suma)
 }
 
-suma(1, 2, 3, 4);
+suma(1, 2, 3, 4, 5);
 
 /*12. Escriba una función llamada sumOfArrayItems, toma un parámetro de arreglo y de-
 vuelve la suma de todos los elementos. Compruebe si todos los elementos de la
 arreglo son tipos de números. Si no, dé una respuesta razonable.*/
 
-function sumOfArrayItems(array){
-
-  for(let i = 0; i < array.length; i++){
-    if(array[i] === 'number'){
-      
+function sumOfArrayItems(array) {
+  let sumaItems = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (typeof array[i] === 'number') {
+      sumaItems += array[i];
+    } else {
+      console.log("12_ No se puede sumar porque no todos los elementos son números");
+      return;  
     }
-
   }
+  console.log("12 Bis_ La suma de todos los elementos del arreglo es:", sumaItems);
 }
+
+sumOfArrayItems([1, 2, 3, 4, 5, 6]);  
+sumOfArrayItems([1, 2, 'a', 4, 5]);  
 
 /*13. Escriba una función llamada promedio, toma un parámetro de arreglo y devuelve el
 promedio de los elementos. Compruebe si todos los elementos de la arreglo son ti-
 pos de números. Si no, dé una respuesta razonable.*/
 
+function promedio(array) {
+  let sumaItems = 0;
+  let promedioItems = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (typeof array[i] === 'number') {
+      sumaItems += array[i];
+      promedioItems = sumaItems / array.length;
+    } else {
+      console.log("13 Bis_ No se puede sacar el promedio porque no todos los elementos son números");
+      return;  
+    }
+  }
+  console.log("13_ El promedio de todos los elementos del arreglo es:", promedioItems);
+}
+
+promedio([7, 8, 10, 3, 12]);  
+promedio([7, 8, 10, 'b', 12]);  
 /*14. Escriba una función llamada modifyArray que tome la arreglo como parámetro y mo-
 difique el quinto elemento de la arreglo y devuelva la arreglo. Si la longitud de la
 arreglo es inferior a cinco, devuelve 'elemento no encontrado'.
@@ -285,23 +311,114 @@ console.log(modifyArray(['Google', 'Facebook','Apple',
 console.log(modifyArray(['Google', 'Facebook','Apple', 'Amazon']);
 'Extraviado'*/ 
 
+function modifyArray(array) {
+  
+  if (array.length < 5) {
+    return "14 Bis_Elemento no encontrado";
+  }
+
+  let resultado = '';
+  let quintoElemento = array[4];
+
+  for (let i = 0; i < quintoElemento.length; i++) {
+    let charCode = quintoElemento.charCodeAt(i);
+    // Verifica si es una letra minúscula (a-z)
+    if (charCode >= 97 && charCode <= 122) {
+      // Convierte a mayúsculas restando 32
+      resultado += String.fromCharCode(charCode - 32);
+    } else {
+      // Si no es minúscula, añade el carácter tal como está
+      resultado += quintoElemento[i];
+    }
+  }
+
+  // Reemplazar el quinto elemento con el resultado en mayúsculas
+  array[4] = resultado;
+
+  return array;
+}
+
+console.log(modifyArray(['Aguacate', 'Tomate', 'Patata', 'Mango', 'Limón', 'Zanahoria']));
+// Resultado: ['Aguacate', 'Tomate', 'Patata', 'Mango', 'LIMÓN', 'Zanahoria']
+
+console.log(modifyArray(['Google', 'Facebook', 'Apple', 'Amazon']));
+// Resultado: 14 Bis_Elemento no encontrado
+
 /*15. Escribe una función llamada isPrime, que verifique si un número es un número
 primo.*/
 
+function isPrime(numero){
+
+  let n = numero;
+  let esPrimo = n !== 1;
+  for (var i = 2; i < n; i++) {
+   if (n % i === 0) {
+     esPrimo = false;
+   }
+ }
+ 
+  if(esPrimo){
+   console.log("15_El numero "+ n +" es un numero primo" )
+  }else{
+   console.log("15 Bis_El numero " + n + "  no es un numero primo")
+  }
+ 
+
+}
+
+isPrime(2);
+isPrime(9);
 /*16. Escriba una función que verifique si todos los elementos son únicos en la arreglo.*/
+
+function sonElementosUnicos(array) {
+
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+     
+      if (array[i] === array[j]) {
+        return false;
+      }
+    }
+  }
+ 
+  return true;
+}
+
+console.log("16_", sonElementosUnicos(['a', 'b', 'c', 'd'])); 
+console.log("16 Bis_", sonElementosUnicos(['a', 'b', 'a', 'd']));  
 
 /*17. Escriba una función que verifique si todos los elementos de la arreglo son del mismo
 tipo de datos.*/
 
+function elementsDataType(array){
+
+
+}
 /*18. El nombre de la variable de JavaScript no admite caracteres o símbolos especiales,
 excepto $ o _. Escriba una función isValidVariable que verifique si una variable es
 una variable válida o no válida.*/
 
+function isValidVariable(variable){
+
+
+}
 /*19. Escriba una función que devuelva una arreglo de siete números aleatorios en un
 rango de 0-9. Todos los números deben ser únicos.
 sevenRandomNumbers()
 [1, 4, 5, 7, 9, 8, 0]*/
 
+function sevenRandomNumbers(){
+  let arraySevenNum = [];
+  let num = Math.floor(Math.random() * 10);
+  
+  for(let i = 0; i < 7; i++){
+    arraySevenNum.push(num);
+
+
+  }
+return arraySevenNum;
+}
+console.log(sevenRandomNumbers());
 /*20. Escriba una función llamada reverseCountries, toma la arreglo de países y primero
 copia la arreglo y devuelve el reverso de la arreglo original*/
 
