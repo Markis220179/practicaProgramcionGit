@@ -441,22 +441,35 @@ console.log("17 Bis_", elementsDataType([1, '2', 3, 4]));
 excepto $ o _. Escriba una función isValidVariable que verifique si una variable es
 una variable válida o no válida.*/
 
-function isValidVariable(variable){
+function isValidVariable(variable) {
 
-  for(let i = 0; i < variable.length; i++){
-    if(variable[i] === '$' && variable[i] === '_'){
-      return 'La variable no es valida'
-    }
-        
+  if (variable[0] >= '0' && variable[0] <= '9') {
+    return 'La variable no es válida';
   }
-  return 'La variable es valida' 
-  
+
+  for (let i = 0; i < variable.length; i++) {
+    const char = variable[i];
+   
+    if (
+      !(char >= 'a' && char <= 'z') && 
+      !(char >= 'A' && char <= 'Z') && 
+      !(char >= '0' && char <= '9') && 
+      char !== '$' &&                  
+      char !== '_'                    
+    ) {
+      return 'La variable no es válida';
+    }
+  }
+
+  return 'La variable es válida';
 }
 
-let variable1 = isValidVariable('*pedro');
+let variable1 = isValidVariable('pe-dro');
 let variable2 = isValidVariable('juan');
-console.log("18_", variable1);
-console.log("18 Bis_", variable2);
+
+
+console.log("18_", variable1); 
+console.log("18 Bis_", variable2); 
 
 /*19. Escriba una función que devuelva una arreglo de siete números aleatorios en un
 rango de 0-9. Todos los números deben ser únicos.
