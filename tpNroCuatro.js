@@ -121,27 +121,37 @@ console.log("4_", coloresAleatoriosRgb);
 
 /*5. Escriba una función convertHexaToRgb que convierta el color hexa a rgb y devuelva
 un color rgb.*/
-/*function convertHexaToRgb(hexa){
-  var hex = decimal.toString(16);
+function convertHexaToRgb(hexa){
+  let r = hexa[1] + hexa[2];
+  let g = hexa[3] + hexa[4];
+  let b = hexa[5] + hexa[6];
 
-  return  'rgb(' + r + ', ' + g + ', ' + b + ')'
+  function convRgb(param){
+    return parseInt(param, 16);
+  }
+
+  return  'rgb(' + convRgb(r) + ', ' + convRgb(g) + ', ' + convRgb(b) + ')'
 } 
 
-let colorRgb = convertHexaToRgb('#1A2B3C');
-console.log("5_", colorRgb);*/
+let colorRgb = convertHexaToRgb('#2980b9');
+console.log("5_", colorRgb);
 
 /*6. Escriba una función convertRgbToHexa que convierta rgb a color hexa y devuelva
 un color hexa.*/
 
-function convertRgbToHexa(rgb){
-let color = '#';
-let hex = rgb.toString(16);
-color += hex;
-  return  color;
+function convertRgbToHexa(r, g, b){
+
+  function convHexa(param){
+    let hex = param.toString(16);
+      return hex.length < 2 ? "0" + hex : hex;
+  }
+
+  return  '#' + convHexa(r) + convHexa(g) + convHexa(b);
 }
 
-let colorHexa = convertRgbToHexa(255);
+let colorHexa = convertRgbToHexa(41, 128, 185);
 console.log("6_", colorHexa);
+
 /*7. Escriba una función generateColors que pueda generar cualquier número de colores
 hexa o rgb.
 console.log(generateColors('hexa', 3)) // ['#a3e12f', '#03ed55',
@@ -170,18 +180,31 @@ console.log("7_", colores1);
 let colores2 = generateColors('hexa', 2);
 console.log("7 Bis_", colores2);
 /*8. Llame a su función shuffleArray, toma una arreglo como parámetro y devuelve una
-arreglo mezclada*/
+arreglo mezclado*/
 
 function shuffleArray(array){
   
- let  arrayMixed = [];
- let num = Math.floor(Math.random() * 10);
+ let  arrayMixed = [array.length];
 
+ for(let i = 0; i < array.length; i++){
+  arrayMixed[i] = array[i];
+ }
+
+for (let i = arrayMixed.length - 1; i > 0; i--) {
+   
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+
+    const temp = arrayMixed[i];
+    arrayMixed[i] = arrayMixed[randomIndex];
+    arrayMixed[randomIndex] = temp;
+  }
  return arrayMixed;
 }
 
 let arrayMezclado = shuffleArray([1, 2, 3, 4]);
 console.log("8_", arrayMezclado);
+
+
 /*9. Llame a su función factorial, toma un número entero como parámetro y devuelve un
 factorial del número*/
 
@@ -229,19 +252,27 @@ function isEmpty(value) {
       // iterar sobre sus propiedades
       for (let key in value) {
           if (value.hasOwnProperty(key)) {
-              return false; 
+              return false; // Si encontramos al menos una propiedad, no está vacío
           }
       }
-      return true; 
+      return true; // Si no encontramos propiedades, está vacío
   }
 
+  // 5. Verificar si es el número 0
   if (typeof value === 'number') {
       return value === 0;
   }
 
+  // 6. Cualquier otro tipo de dato (booleanos, funciones, etc.) no lo consideraremos "vacío"
   return false;
 }
- console.log("10_", isEmpty());
+
+// Pruebas           
+console.log("10_", isEmpty([1, 2, 3]));       // false
+console.log("10 Bis_", isEmpty(42));              // false
+
+
+
 /*11. Llame a su función suma, toma cualquier cantidad de argumentos y devuelve la
 suma.*/
 
@@ -389,34 +420,75 @@ console.log("16 Bis_", sonElementosUnicos(['a', 'b', 'a', 'd']));
 tipo de datos.*/
 
 function elementsDataType(array){
-
-
+  
+    const primerTipo = typeof array[0];
+    
+    for (let i = 1; i < array.length; i++) {
+       
+        if (typeof array[i] !== primerTipo) {
+            return false;
+        }
+    }
+    
+  
+    return true;
 }
+
+console.log("17_", elementsDataType([1, 2, 3, 4]));
+console.log("17 Bis_", elementsDataType([1, '2', 3, 4])); 
+
 /*18. El nombre de la variable de JavaScript no admite caracteres o símbolos especiales,
 excepto $ o _. Escriba una función isValidVariable que verifique si una variable es
 una variable válida o no válida.*/
 
 function isValidVariable(variable){
 
-
+  for(let i = 0; i < variable.length; i++){
+    if(variable[i] === '$' && variable[i] === '_'){
+      return 'La variable no es valida'
+    }
+        
+  }
+  return 'La variable es valida' 
+  
 }
+
+let variable1 = isValidVariable('*pedro');
+let variable2 = isValidVariable('juan');
+console.log("18_", variable1);
+console.log("18 Bis_", variable2);
+
 /*19. Escriba una función que devuelva una arreglo de siete números aleatorios en un
 rango de 0-9. Todos los números deben ser únicos.
 sevenRandomNumbers()
 [1, 4, 5, 7, 9, 8, 0]*/
 
-function sevenRandomNumbers(){
+function sevenRandomNumbers() {
   let arraySevenNum = [];
-  let num = Math.floor(Math.random() * 10);
-  
-  for(let i = 0; i < 7; i++){
-    arraySevenNum.push(num);
 
+  while (arraySevenNum.length < 7) {
+    let num = Math.floor(Math.random() * 10);
+    let isUnique = true;
 
+   
+    for (let i = 0; i < arraySevenNum.length; i++) {
+      if (arraySevenNum[i] === num) {
+        isUnique = false; 
+        break;
+      }
+    }
+    
+    if (isUnique) {
+      arraySevenNum.push(num);
+    }
   }
-return arraySevenNum;
+
+  return arraySevenNum;
 }
-console.log(sevenRandomNumbers());
+
+console.log("19_", sevenRandomNumbers());
+
+
 /*20. Escriba una función llamada reverseCountries, toma la arreglo de países y primero
 copia la arreglo y devuelve el reverso de la arreglo original*/
 

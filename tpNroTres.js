@@ -234,7 +234,7 @@ function sumOfEven(parametroNum, array){
 }
 
 let sumaNumParesPP = sumOfEven(4, [1, 2, 3, 4, 5, 6]);
-console.log("12_La suma de los impares del array hasta el parametroes:", sumaNumParesPP);
+console.log("12_La suma de los pares del array hasta el parametro es:", sumaNumParesPP);
 
 /*13. Declare un nombre de función evensAndOdds . Toma un entero positivo como parámetro y
 cuenta el número de pares e impares en el número.
