@@ -142,23 +142,53 @@ console.log("1-D_Las cuentas con el tipo de moneda dada son:",  devolTypeCoin(cu
 /*e) Realiza una función que permita descontar un importe dado (mantenimiento de cuenta) a
   todas las cuentas en la lista.*/
 
+function accountMaitenance(arrayObjets, accMaint) {
+  const newObj = JSON.parse(JSON.stringify(arrayObjets))
 
+  newObj.forEach(element => {
+    
+   return element.importe = element.importe - accMaint;
+  });
+
+
+return newObj;
+}
+
+console.log("1-E_Las cuentas descontando el mantenimiento quedarian asi:", accountMaitenance(cuentas, 100));
 
 /*f) Realiza una función que permita incrementar un porcentaje dado (por beneficios
   exclusivos) a todas las cuentas con plazo fijo con importe mayor a 500000.*/
 
+  let cuenta5 = {
+    tipo: "ahorro",
+    importe: 450,
+    tipoMoneda: "dolar",
+    plazoFijo: [{
+      estado: "inactivo",
+      importe: 650000,
+      fechaCreacion: "2023-09-28",
+      plazo: 150, // en días
+    }],
+  }
+    
+  let arrayMod = addAccount(cuenta5, cuentas);
 
+  function increPorcentDado(arrayObjets, porcentaje){
+
+    
+  }
 
 /*g) Realiza una función que permita cargar una nueva cuenta al final de la lista.*/
 
 function addAccount(newAccount, arrayObjets){
-  const newObj = {...arrayObjets};
+  const newObj = [...arrayObjets];
+
   newObj[newObj.length] = newAccount;
   
   return newObj;
 } 
 
-let cuenta5 = {
+let cuenta5Bis = {
   tipo: "corriente",
   importe: 300,
   tipoMoneda: "euro",
@@ -170,33 +200,30 @@ let cuenta5 = {
   }],
 };
 
-console.log("1-G_Al cargar una nueva cuenta quedaria asi:", addAccount(cuenta5, cuentas));
+console.log("1-G_Al cargar una nueva cuenta quedaria asi:", addAccount(cuenta5Bis, cuentas));
 
 
 /*h) Realiza una función que permita ordenar la lista según el importe de cada cuenta.*/
 
 function orderListAmount(arrayObjets){
-  const newObj = {...arrayObjets};
-  for(let index = 0; index < newObj.length; index++){
+  const newObj = [...arrayObjets];
 
-    newObj.importe.sort((a, b) => b - a);
+  newObj.sort((a, b) => b.importe - a.importe );
 
-  }
   return newObj;
 }
 
 console.log("1-H_Las cuentas ordenadas por el importe quedarian asi:", orderListAmount(cuentas));
 
-/*i) Realiza una función que permita ordenar la lista según el vencimientos de los plazos fijos.*/
+/*i) Realiza una función que permita ordenar la lista según 
+el vencimientos de los plazos fijos.*/
 
 function orderListFixedTerm(arrayObjets){
-  const newObj = {...arrayObjets};
+  const newObj = [...arrayObjets];
   for(let index = 0; index < newObj.length; index++){
 
-    for (let i = 0; i < newObj[index].plazoFijo.length; i++) {
       
-      newObj[index].plazoFijo[i].plazo.sort((a, b) => b - a);
-    }
+      newObj.sort((a, b) => b.plazoFijo[0].plazo - a.plazoFijo[0].plazo);
   }
   return newObj;
 }
