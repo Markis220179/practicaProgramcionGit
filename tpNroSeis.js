@@ -1,6 +1,6 @@
-/*TP – Objetos
-
-1) Dada una lista con cuentas bancarias con la siguiente información:
+/*TP – Objetos*/
+console.log("*********************1***************");
+/*1) Dada una lista con cuentas bancarias con la siguiente información:
 cuenta = {
 tipo: "corriente", // "ahorro"
 importe: 200,
@@ -14,6 +14,7 @@ plazo: 30, // en dias
 }*/
 
 let cuenta1 = {
+    id: "cuenta1",
     tipo: "corriente",
     importe: 500,
     tipoMoneda: "peso",
@@ -26,6 +27,7 @@ let cuenta1 = {
   };
 
   let cuenta2 = {
+    id: "cuenta2",
     tipo: "ahorro",
     importe: 1500,
     tipoMoneda: "dolar",
@@ -38,6 +40,7 @@ let cuenta1 = {
   };
 
   let cuenta3 = {
+    id: "cuenta3",
     tipo: "ahorro",
     importe: 2500,
     tipoMoneda: "euro",
@@ -50,12 +53,13 @@ let cuenta1 = {
   };
 
   let cuenta4 = {
+    id: "cuenta4",
     tipo: "corriente",
     importe: 750,
     tipoMoneda: "dolar",
     plazoFijo: [{
       estado: "inactivo",
-      importe: 500,
+      importe: 650000,
       fechaCreacion: "2023-01-20",
       plazo: 45, // en días
     }],
@@ -74,17 +78,18 @@ function devolCuentActDate(arrayObjets){
 
     for (let i = 0; i < arrayObjets[index].plazoFijo.length; i++) {
       if (arrayObjets[index].plazoFijo[i].estado === "activo" && arrayObjets[index].plazoFijo[i].fechaCreacion > "2022-03-22") {
-         
+        console.log(arrayObjets[index].id);
+
         listActivas.push(arrayObjets[index]);
         break;
       }
     }
   }
 return listActivas;
-
 }
 
-console.log("1-A_Cuentas con estados activos:", devolCuentActDate(cuentas));
+console.log("1-A_Cuentas con estados activos:");
+devolCuentActDate(cuentas);
 
 /*b) Realiza una función que devuelva todos las cuentas con plazos fijos con plazo mayor a 30
   días.*/
@@ -95,7 +100,8 @@ console.log("1-A_Cuentas con estados activos:", devolCuentActDate(cuentas));
       
       for (let i = 0; i < arrayObjets[index].plazoFijo.length; i++) {
         if (arrayObjets[index].plazoFijo[i].plazo > 30) {
-         
+          console.log(arrayObjets[index].id);
+
           listaMayores.push(arrayObjets[index]);
           break;
         }
@@ -105,7 +111,8 @@ console.log("1-A_Cuentas con estados activos:", devolCuentActDate(cuentas));
     return listaMayores;
   }
    
-  console.log("1-B_Cuentas con plazos mayores a 30 días:", devolCuentMayor30D(cuentas));
+  console.log("1-B_Cuentas con plazos mayores a 30 días:");
+  devolCuentMayor30D(cuentas);
   
 
 /*c) Realiza una función que devuelva todos las cuentas del tipo corriente.*/
@@ -114,15 +121,16 @@ function devolCuentasCorrien(arrayObjets){
   let listaCorrientes = [];
   for (let index = 0; index < arrayObjets.length; index++) {
     if(arrayObjets[index].tipo === "corriente"){
+      console.log(arrayObjets[index].id);
 
-      listaCorrientes.push(arrayObjets[index]);
-     
+      listaCorrientes.push(arrayObjets[index]);     
     }
   }
   return listaCorrientes;  
 }
 
-console.log("1-C_Las cuentas del tipo corriente son:", devolCuentasCorrien(cuentas));
+console.log("1-C_Las cuentas del tipo corriente son:");
+devolCuentasCorrien(cuentas);
 
 /*d) Realiza una función que devuelva todos las cuentas de un tipo de moneda especificado.*/
 
@@ -130,6 +138,7 @@ function devolTypeCoin(arrayObjets){
   const listaMoneda = [];
   for(let index = 0; index < arrayObjets.length; index++){
     if(arrayObjets[index].tipoMoneda === "dolar"){
+      console.log(arrayObjets[index].id);
 
       listaMoneda.push(arrayObjets[index]);
     }
@@ -137,58 +146,72 @@ function devolTypeCoin(arrayObjets){
   return listaMoneda;
 }
 
-console.log("1-D_Las cuentas con el tipo de moneda dada son:",  devolTypeCoin(cuentas));
+console.log("1-D_Las cuentas con el tipo de moneda dada son:");
+devolTypeCoin(cuentas);
 
 /*e) Realiza una función que permita descontar un importe dado (mantenimiento de cuenta) a
   todas las cuentas en la lista.*/
 
-function accountMaitenance(arrayObjets, accMaint) {
-  const newObj = JSON.parse(JSON.stringify(arrayObjets))
+  function accountMaitenance(arrayObjets, accMaint) {
 
-  newObj.forEach(element => {
-    
-   return element.importe = element.importe - accMaint;
-  });
+    const newObj = JSON.parse(JSON.stringify(arrayObjets));
+  
+    newObj.forEach(element => {
+      element.importe = element.importe - accMaint;
+    });
+  
+    const cuentasConDescuento = newObj.map(element => ({
+      id: element.id,
+      importe: element.importe
+    }));
+  
+    return cuentasConDescuento;
+  }
 
-
-return newObj;
-}
-
-console.log("1-E_Las cuentas descontando el mantenimiento quedarian asi:", accountMaitenance(cuentas, 100));
-
+  console.log("1-E_Las cuentas descontando el mantenimiento quedarían así:", accountMaitenance(cuentas, 100));
+  
 /*f) Realiza una función que permita incrementar un porcentaje dado (por beneficios
   exclusivos) a todas las cuentas con plazo fijo con importe mayor a 500000.*/
 
-  let cuenta5 = {
-    tipo: "ahorro",
-    importe: 450,
-    tipoMoneda: "dolar",
-    plazoFijo: [{
-      estado: "inactivo",
-      importe: 650000,
-      fechaCreacion: "2023-09-28",
-      plazo: 150, // en días
-    }],
-  }
-    
-  let arrayMod = addAccount(cuenta5, cuentas);
-
   function increPorcentDado(arrayObjets, porcentaje){
+    listaAccountIncrem = [];
+    for (let index = 0; index < arrayObjets.length; index++) {
+      
+      for (let i = 0; i < arrayObjets[index].plazoFijo.length; i++) {
+        if (arrayObjets[index].plazoFijo[i].importe > 500000) {
+         
+          let incremento = arrayObjets[index].plazoFijo[i].importe * (porcentaje / 100);
+      
+          arrayObjets[index].plazoFijo[i].importe += incremento;
+        
+          listaAccountIncrem.push(arrayObjets[index]);
 
-    
+        console.log("1-F_"+ arrayObjets[index].id + " - Importe actualizado del plazo fijo: " + arrayObjets[index].plazoFijo[i].importe);
+
+          break;
+        }
+      }
+    }
+  
+    return listaAccountIncrem;    
   }
 
+  increPorcentDado(cuentas, 20);
+  
 /*g) Realiza una función que permita cargar una nueva cuenta al final de la lista.*/
 
-function addAccount(newAccount, arrayObjets){
+function addAccount(newAccount, arrayObjets) {
   const newObj = [...arrayObjets];
 
-  newObj[newObj.length] = newAccount;
-  
-  return newObj;
-} 
+  newObj.push(newAccount); 
 
-let cuenta5Bis = {
+  const arrayIds = newObj.map(cuenta => cuenta.id);
+
+  return arrayIds;
+}
+
+let cuenta5 = {
+  id: "cuenta5",
   tipo: "corriente",
   importe: 300,
   tipoMoneda: "euro",
@@ -200,7 +223,8 @@ let cuenta5Bis = {
   }],
 };
 
-console.log("1-G_Al cargar una nueva cuenta quedaria asi:", addAccount(cuenta5Bis, cuentas));
+let idsCuentas = addAccount(cuenta5, cuentas);
+console.log("1-G_Al cargar una nueva cuenta quedaría así:", idsCuentas);
 
 
 /*h) Realiza una función que permita ordenar la lista según el importe de cada cuenta.*/
@@ -210,7 +234,9 @@ function orderListAmount(arrayObjets){
 
   newObj.sort((a, b) => b.importe - a.importe );
 
-  return newObj;
+  const cuentasOrdenadas = newObj.map(cuenta => cuenta.id);
+
+  return cuentasOrdenadas;
 }
 
 console.log("1-H_Las cuentas ordenadas por el importe quedarian asi:", orderListAmount(cuentas));
@@ -224,27 +250,117 @@ function orderListFixedTerm(arrayObjets){
 
       
       newObj.sort((a, b) => b.plazoFijo[0].plazo - a.plazoFijo[0].plazo);
+
   }
-  return newObj;
+  const cuentasOrdenadas2 = newObj.map(cuenta => cuenta.id);
+
+  return cuentasOrdenadas2;
 }
 
 console.log("1-i_Las cuentas ordenadas por el vto. de plazo fijo quedarian asi:", orderListFixedTerm(cuentas));
 
-
+console.log("*********************2***************")
 /*2) Dada una lista con venta de pasajes con la siguiente información:
 pasaje = {
 categoria: "primera", // "segunda"
 precio: 100,
 descuento: 10,
 estado: "disponible", // "vendido"
+}*/
+
+
+  let pasaje1 = {
+    id: "pasaje1",
+    categoria: "primera",
+    precio: 150,
+    descuento: 20,
+    estado: "disponible"
+  }
+  let pasaje2 = {
+    id: "pasaje2",
+    categoria: "segunda",
+    precio: 100,
+    descuento: 10,
+    estado: "vendido"
+  }
+  let pasaje3 = {
+    id: "pasaje3",
+    categoria: "primera",
+    precio: 200,
+    descuento: 15,
+    estado: "disponible"
+  }
+  let pasaje4 = {
+    id: "pasaje4",
+    categoria: "segunda",
+    precio: 80,
+    descuento: 5,
+    estado: "vendido"
+  }
+  let pasaje5 = {
+    id: "pasaje5",
+    categoria: "primera",
+    precio: 180,
+    descuento: 10,
+    estado: "disponible"
+  }
+  let pasaje6 = {
+    id: "pasaje6",
+    categoria: "segunda",
+    precio: 130,
+    descuento: 30,
+    estado: "disponible"
+  }
+
+  const pasajes = [pasaje1, pasaje2, pasaje3, pasaje4, pasaje5, pasaje6];
+
+/*a) Realiza una función que devuelva la cantidad de pasajes disponibles.*/
+
+function ticketsAvailable(arrayTickets) {
+  let disponible = 0;
+
+  for (let index = 0; index < arrayTickets.length; index++) {
+    if (arrayTickets[index].estado === "disponible") {
+      disponible += 1; 
+    }
+  }
+
+  return disponible;
 }
 
-a) Realiza una función que devuelva la cantidad de pasajes disponibles.
-b) Realiza una función que ordene los pasajes por precio de mayor a menor.
-c) Realiza una función que devuelva todos los pasajes con descuento mayor a un valor dado.
-d) Realiza una función que devuelva todos las cuentas de un tipo de moneda especificado.
-e) Realiza una función que permita agregar un descuento a un pasaje y aplicarlo al importe.
-f) Realiza una función que permita buscar pasajes de una cierta categoría y que estén
+console.log("La cantidad de pasajes disponibles es:", ticketsAvailable(pasajes));
+
+/*b) Realiza una función que ordene los pasajes por precio de mayor a menor.*/
+
+function ticketsPriceSorted(arrayTickets) {
+  const arrayDupli = [...arrayTickets];
+  
+ 
+  arrayDupli.sort((a, b) => b.precio - a.precio);
+
+ 
+  const ordenados = arrayDupli.map(ticket => ticket.id);
+  
+  return ordenados;
+}
+
+console.log("Los pasajes ordenados según el precio son:");
+console.log(ticketsPriceSorted(pasajes));
+
+
+/*c) Realiza una función que devuelva todos los pasajes con descuento mayor a un valor dado.*/
+
+
+
+/*d) Realiza una función que devuelva todos las cuentas de un tipo de moneda especificado.*/
+
+
+
+/*e) Realiza una función que permita agregar un descuento a un pasaje y aplicarlo al importe.*/
+
+
+
+/*f) Realiza una función que permita buscar pasajes de una cierta categoría y que estén
 disponibles.*/
 
 
