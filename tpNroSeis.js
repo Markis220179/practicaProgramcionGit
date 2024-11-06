@@ -409,7 +409,7 @@ function ticketsCategory(arrayTickets, tipoCateg) {
 console.log("2-E_Los pasajes de la categoria pedida disponibles son:");
 ticketsCategory(pasajes, "primera");
 
-
+console.log("*********************3***************")
 /*3) Dada una lista con las butacas de un cine con la siguiente información:
 butaca = {
 numero: 1,
@@ -435,21 +435,67 @@ const butacas = [butaca1, butaca2, butaca3, butaca4, butaca5, butaca6, butaca7, 
 
 /*a) Realiza una función que devuelva las butacas libres.*/
 
+function freeSeats(arraySeats) {
+  
+  for (let index = 0; index < arraySeats.length; index++) {
+    if (arraySeats[index].estado === "libre") {
+      console.log("butaca " + (index + 1))
+    }
+  }
+  
+}
 
+console.log("3-A_Las butacas libres son:");
+freeSeats(butacas);
 
 /*b) Realiza una función que devuelva las butacas libres dada una cierta ubicación.*/
 
+function stateSeatsUbication(arraySeats, estadoBut, ubicationBut) {
+  
+  for (let index = 0; index < arraySeats.length; index++) {
+    if (arraySeats[index].estado === estadoBut && arraySeats[index].ubicacion === ubicationBut) {
+      console.log("butaca " + (index + 1))
+    }
+  }
+  
+}
 
+console.log("3-B_Las butacas libres con la ubicacion dada son:");
+stateSeatsUbication(butacas, "libre", "derecha");
 
 /*c) Realiza una función que devuelva la cantidad de butacas ocupadas.*/
 
+function occupiedSeats(arraySeats) {
+  let ocupadas = 0;
+
+  for (let index = 0; index < arraySeats.length; index++) {
+    if (arraySeats[index].estado === "ocupada") {
+      ocupadas += 1;
+    }
+  }
+  return ocupadas;
+}
+
+console.log("3-C _La cantidad de butacas ocupadas son:", occupiedSeats(butacas));
 
 
 /*d) Realiza una función que indique la distribución de las butacas ocupadas, es decir, en caso
 que halla la misma cantidad de butacas en cada ubicación, la distribución será
 “homogénea”, de lo contrario será según donde se encuentre mayor cantidad.*/
 
+stateSeatsUbication(butacas, "ocupada", "izquierda");
+stateSeatsUbication(butacas, "ocupada", "centro");
+stateSeatsUbication(butacas, "ocupada", "derecha");
 
+function distributionSeatsOccup(arraySeats) {
+  for (let index = 0; index < arraySeats.length; index++) {
+    const butacasizq = arraySeats.filter(array => array.ubicacion === "izquierda");
+    
+  }
+  return butacasizq;
+}
+
+distributionSeatsOccup(butacas);
 
 /*4) Dada una lista con las vehículos de una agencia automotriz con la siguiente información:
 auto = {
