@@ -451,17 +451,18 @@ freeSeats(butacas);
 /*b) Realiza una función que devuelva las butacas libres dada una cierta ubicación.*/
 
 function stateSeatsUbication(arraySeats, estadoBut, ubicationBut) {
+  let but = 0;
   
   for (let index = 0; index < arraySeats.length; index++) {
     if (arraySeats[index].estado === estadoBut && arraySeats[index].ubicacion === ubicationBut) {
-      console.log("butaca " + (index + 1))
+      but += 1;
+     
     }
   }
-  
+  return but;
 }
 
-console.log("3-B_Las butacas libres con la ubicacion dada son:");
-stateSeatsUbication(butacas, "libre", "derecha");
+console.log("3-B_Las butacas libres con la ubicacion dada son:", stateSeatsUbication(butacas, "libre", "derecha"));
 
 /*c) Realiza una función que devuelva la cantidad de butacas ocupadas.*/
 
@@ -483,19 +484,26 @@ console.log("3-C _La cantidad de butacas ocupadas son:", occupiedSeats(butacas))
 que halla la misma cantidad de butacas en cada ubicación, la distribución será
 “homogénea”, de lo contrario será según donde se encuentre mayor cantidad.*/
 
-stateSeatsUbication(butacas, "ocupada", "izquierda");
-stateSeatsUbication(butacas, "ocupada", "centro");
-stateSeatsUbication(butacas, "ocupada", "derecha");
+let izq = stateSeatsUbication(butacas, "ocupada", "izquierda");
+let cen = stateSeatsUbication(butacas, "ocupada", "centro");
+let der = stateSeatsUbication(butacas, "ocupada", "derecha");
+const butOccuUbi = [izq, cen, der];
 
 function distributionSeatsOccup(arraySeats) {
-  for (let index = 0; index < arraySeats.length; index++) {
-    const butacasizq = arraySeats.filter(array => array.ubicacion === "izquierda");
+ 
+    if (arraySeats[0] === arraySeats[1] === arraySeats[2]) {
+      console.log("2-D_La distribucion es homogenia");
+      
+    } else {
+     let butacasOcupadasMayor = Math.max(arraySeats[0], arraySeats[1], arraySeats[2]);
+     console.log("2-D_Hay mas butacas ocupadas aca:", butacasOcupadasMayor);
+    }
     
-  }
-  return butacasizq;
 }
 
-distributionSeatsOccup(butacas);
+distributionSeatsOccup(butOccuUbi);
+
+console.log("*********************4***************")
 
 /*4) Dada una lista con las vehículos de una agencia automotriz con la siguiente información:
 auto = {
@@ -506,13 +514,31 @@ anio: 2019,
 precio: 150000,
 km: 0,
 estado: "disponible", // "vendido"
-}
-a) Realiza una función que devuelva los autos dado su marca y modelo.
-b) Realiza una función que devuelva los autos según un año de fabricación.
-c) Realiza una función que devuelva los autos según un kilometraje.
-d) Idem por precio, estado, etc.
-e) Como realizarías una única función que liste los vehículos según diferentes parámetros?. Do it!!.
-f) Realiza una función que permita ingresar nuevos vehículos.*/
+}*/
+
+
+
+/*a) Realiza una función que devuelva los autos dado su marca y modelo.*/
+
+
+
+/*b) Realiza una función que devuelva los autos según un año de fabricación.*/
+
+
+
+/*c) Realiza una función que devuelva los autos según un kilometraje.*/
+
+
+
+/*d) Idem por precio, estado, etc.*/
+
+
+
+/*e) Como realizarías una única función que liste los vehículos según diferentes parámetros?. Do it!!.*/
+
+
+
+/*f) Realiza una función que permita ingresar nuevos vehículos.*/
 
 
 
