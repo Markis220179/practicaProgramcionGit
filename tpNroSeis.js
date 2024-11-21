@@ -403,7 +403,7 @@ function ticketsCategory(arrayTickets, tipoCateg) {
     }
 
   }
-      
+
 }
 
 console.log("2-E_Los pasajes de la categoria pedida disponibles son:");
@@ -436,13 +436,13 @@ const butacas = [butaca1, butaca2, butaca3, butaca4, butaca5, butaca6, butaca7, 
 /*a) Realiza una función que devuelva las butacas libres.*/
 
 function freeSeats(arraySeats) {
-  
+
   for (let index = 0; index < arraySeats.length; index++) {
     if (arraySeats[index].estado === "libre") {
       console.log("butaca " + (index + 1))
     }
   }
-  
+
 }
 
 console.log("3-A_Las butacas libres son:");
@@ -452,11 +452,11 @@ freeSeats(butacas);
 
 function stateSeatsUbication(arraySeats, estadoBut, ubicationBut) {
   let but = 0;
-  
+
   for (let index = 0; index < arraySeats.length; index++) {
     if (arraySeats[index].estado === estadoBut && arraySeats[index].ubicacion === ubicationBut) {
       but += 1;
-     
+
     }
   }
   return but;
@@ -490,15 +490,25 @@ let der = stateSeatsUbication(butacas, "ocupada", "derecha");
 const butOccuUbi = [izq, cen, der];
 
 function distributionSeatsOccup(arraySeats) {
- 
-    if (arraySeats[0] === arraySeats[1] === arraySeats[2]) {
-      console.log("2-D_La distribucion es homogenia");
-      
-    } else {
-     let butacasOcupadasMayor = Math.max(arraySeats[0], arraySeats[1], arraySeats[2]);
-     console.log("2-D_Hay mas butacas ocupadas aca:", butacasOcupadasMayor);
-    }
-    
+
+  if (arraySeats[0] === arraySeats[1] === arraySeats[2]) {
+
+    console.log("3-D_La distribucion es homogenia");
+
+  } else if (arraySeats[0] >= arraySeats[1] && arraySeats[0] >= arraySeats[2]) {
+
+    console.log("3-D_Hay mas butacas ocupadas a la izquierda");
+
+  } else if (arraySeats[1] >= arraySeats[0] && arraySeats[1] >= arraySeats[2]) {
+
+    console.log("3-D_Hay mas butacas ocupadas al centro");
+
+  } else {
+
+    console.log("3-D_Hay mas butacas ocupadas a la derecha");
+
+  }
+
 }
 
 distributionSeatsOccup(butOccuUbi);
